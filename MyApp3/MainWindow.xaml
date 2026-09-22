@@ -66,7 +66,8 @@
             BorderThickness="1"
             Margin="10"
             Background="#FFFDFDFD"
-            Grid.Column="1">
+            Grid.Column="1"
+            MouseDown="AttackEnemy">
 
             <Grid>
                 <Image
