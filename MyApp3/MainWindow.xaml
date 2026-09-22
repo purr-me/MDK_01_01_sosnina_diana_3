@@ -74,6 +74,10 @@
                     x:Name="enemyImage"
                     Margin="10,10,10.2,185.4"
                     Source="image\monstr1.jpg"/>
+                <Image
+                    x:Name="enemyImage2"
+                    Margin="10,10,10.2,185.4"
+                    Source="/image/monstr2.jpg"/>        
                 <Label
                     Content="Основные характеристики персонажа:"
                     HorizontalAlignment="Left"

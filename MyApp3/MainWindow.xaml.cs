@@ -27,7 +27,10 @@ namespace MyApp3
         DispatcherTimer dispatcherTimer = new DispatcherTimer();
         public Classes.PersonInfo Enemy;
 
+
+
         Random rnd = new Random();
+        bool isGameOver = false;
 
 
         public MainWindow()
@@ -47,8 +50,14 @@ namespace MyApp3
 
         private void AtackPlayer(object sender, EventArgs e)
         {
+            if (isGameOver) return;
+
+
             Player.Health -= Convert.ToInt32(Enemy.Damage * 100f / (100f - Player.Armor));
             UserInfoPlayer();
+
+
+            GameOver();
         }
 
         public void SelectEnemy()
@@ -62,6 +71,9 @@ namespace MyApp3
                 Enemys[Id].Glasses,
                 Enemys[Id].Money,
                 Enemys[Id].Damage);
+
+
+            UpdateEnemyImage(Id);
         }
 
         public void UserInfoPlayer()
@@ -83,10 +95,18 @@ namespace MyApp3
 
         private void AttackEnemy(object sender, MouseButtonEventArgs e)
         {
+            if (isGameOver) return;
+
+
+
+
             Enemy.Health -= Convert.ToInt32(Player.Damage * 100f / (100f - Enemy.Armor));
 
 
+
             InstantStrike();
+
+
 
 
             if (Enemy.Health <= 0)
@@ -124,6 +144,31 @@ namespace MyApp3
             {
                 if (Enemy.Health <= 0) break;
                 Enemy.Health -= Convert.ToInt32(Player.Damage * 100f / (100f - Enemy.Armor));
+            }
+        }
+
+        private void UpdateEnemyImage(int index)
+        {
+            if (index == 0)
+            {
+                enemyImage.Width = 300;
+                enemyImage2.Width = 0;
+            }
+            else if (index == 1)
+            {
+                enemyImage.Width = 0;
+                enemyImage2.Width = 300;
+            }
+
+        }
+
+        private void GameOver()
+        {
+            if (Player.Health <= 0)
+            {
+                Player.Health = 0;
+                isGameOver = true;
+                MessageBox.Show("Вы проиграли, старайтесь лучше");
             }
         }
 
