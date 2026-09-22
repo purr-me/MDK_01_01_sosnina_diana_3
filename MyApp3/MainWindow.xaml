@@ -71,7 +71,7 @@
 
             <Grid>
                 <Image
-                    x:Name="emptyImage"
+                    x:Name="enemyImage"
                     Margin="10,10,10.2,185.4"
                     Source="image\monstr1.jpg"/>
                 <Label
@@ -81,13 +81,13 @@
                     FontWeight="Bold"
                     Margin="10, 0, 0, 160"/>
                 <Label
-                    x:Name="emptyHealth"
+                    x:Name="enemyHealt"
                     Content="Жизненные показатели: 100"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Bottom"
                     Margin="10, 0, 0, 130"/>
                 <Label
-                    x:Name="emptyArmor"
+                    x:Name="enemyArmor"
                     Content="Броня: 100"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Bottom"

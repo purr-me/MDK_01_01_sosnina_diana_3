@@ -32,12 +32,13 @@ namespace MyApp3
             InitializeComponent();
             UserInfoPlayer();
 
-            Enemys.Add(new PersonInfo("Злой монстр", 100, 10, 1, 0, 15, 10));
-            Enemys.Add(new PersonInfo("Злая рыбеха", 120, 15, 1, 0, 30, 15));
+            Enemys.Add(new PersonInfo("Злой монстр", 100, 10, 1, 10, 15, 10));
+            Enemys.Add(new PersonInfo("Злая рыбеха", 120, 15, 1, 15, 30, 15));
 
             dispatcherTimer.Tick += AtackPlayer;
             dispatcherTimer.Interval = new TimeSpan(0, 0, 10);
             dispatcherTimer.Start();
+
             SelectEnemy();
         }
 
@@ -77,5 +78,21 @@ namespace MyApp3
             playerMoney.Content = "Монеты: " + Player.Money;
         }
 
+        private void AttackEnemy(object sender, MouseButtonEventArgs e)
+        {
+            Enemy.Health -= Convert.ToInt32(Player.Damage * 100f / (100f - Enemy.Armor));
+            if(Enemy.Health <= 0)
+            {
+                Player.Glasses += Enemy.Glasses;
+                Player.Money += Enemy.Money;
+                UserInfoPlayer();
+                SelectEnemy();
+            }
+            else
+            {
+                enemyHealt.Content = "Жизненные показатели: " + Enemy.Health;
+                enemyArmor.Content = "Броня: " + Enemy.Armor;
+            }
+        }
     }
 }
