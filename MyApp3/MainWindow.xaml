@@ -92,6 +92,14 @@
                     HorizontalAlignment="Left"
                     VerticalAlignment="Bottom"
                     Margin="10, 0, 0, 100"/>
+
+
+                <Label
+                    x:Name="countHits"
+                    Content="Ударов за клик: "
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Bottom"
+                    Margin="10,0,0,69"/>
             </Grid>
         </Border>
     </Grid>
