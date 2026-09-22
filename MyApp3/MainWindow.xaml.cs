@@ -25,6 +25,7 @@ namespace MyApp3
         public Classes.PersonInfo Player = new Classes.PersonInfo("Student", 100, 10, 1, 0, 0, 5);
         public List<PersonInfo> Enemys = new List<PersonInfo>();
         DispatcherTimer dispatcherTimer = new DispatcherTimer();
+        public Classes.PersonInfo Enemy;
 
         public MainWindow()
         {
@@ -34,14 +35,29 @@ namespace MyApp3
             Enemys.Add(new PersonInfo("Злой монстр", 100, 10, 1, 0, 15, 10));
             Enemys.Add(new PersonInfo("Злая рыбеха", 120, 15, 1, 0, 30, 15));
 
-            dispatcherTimer.Tick += AttackPlayer;
-            dispatcherTimer.Interval = new System.TimeSpan(0, 0, 10);
+            dispatcherTimer.Tick += AtackPlayer;
+            dispatcherTimer.Interval = new TimeSpan(0, 0, 10);
             dispatcherTimer.Start();
+            SelectEnemy();
         }
 
-        private void AttackPlayer(object sender, System.Timers.ElapsedEventArgs e)
+        private void AtackPlayer(object sender, EventArgs e)
         {
+            Player.Health -= Convert.ToInt32(Enemy.Damage * 100f / (100f - Player.Armor));
+            UserInfoPlayer();
+        }
 
+        public void SelectEnemy()
+        {
+            int Id = new Random().Next(0, Enemys.Count);
+            Enemy = new PersonInfo(
+                Enemys[Id].Name,
+                Enemys[Id].Health,
+                Enemys[Id].Armor,
+                Enemys[Id].Level,
+                Enemys[Id].Glasses,
+                Enemys[Id].Money,
+                Enemys[Id].Damage);
         }
 
         public void UserInfoPlayer()
